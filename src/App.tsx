@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { NavLink, Route, Routes } from "react-router-dom";
+import ListPage from "./pages/ListPage";
+import GalleryPage from "./pages/GalleryPage";
+import DetailPage from "./pages/DetailPage";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="app">
+      <header className="topbar">
+        <h1>Hogwarts Directory</h1>
+        <nav className="nav">
+          <NavLink to="/" end>List</NavLink>
+          <NavLink to="/gallery">Gallery</NavLink>
+        </nav>
       </header>
+
+      <main className="container">
+        <Routes>
+          <Route path="/" element={<ListPage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/character/:key" element={<DetailPage />} />
+        </Routes>
+      </main>
+
+      <footer className="foot">
+        <a href="https://hp-api.onrender.com" target="_blank" rel="noreferrer">
+          Data: HP-API
+        </a>
+      </footer>
     </div>
   );
 }
-
-export default App;
